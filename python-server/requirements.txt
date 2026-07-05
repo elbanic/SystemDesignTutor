@@ -1,0 +1,6 @@
+mcp>=1.0.0
+strands-agents
+boto3
+chromadb
+requests
+llama-index-embeddings-huggingface

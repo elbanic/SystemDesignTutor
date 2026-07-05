@@ -1,0 +1,99 @@
+{
+  "name": "systemdesigntutor",
+  "displayName": "System Design Tutor",
+  "description": "AI-powered system design interview tutoring with embedded MCP server and Strands Agent",
+  "version": "0.0.1",
+  "publisher": "systemdesigntutor",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/systemdesigntutor"
+  },
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Education",
+    "Other"
+  ],
+  "keywords": [
+    "system design",
+    "interview prep",
+    "AI tutor",
+    "MCP",
+    "learning"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "systemdesigntutor.syncData",
+        "title": "System Design Tutor: Sync System Design Data"
+      },
+      {
+        "command": "systemdesigntutor.openConfig",
+        "title": "System Design Tutor: Open Configuration"
+      },
+      {
+        "command": "systemdesigntutor.restartServer",
+        "title": "System Design Tutor: Restart MCP Server"
+      },
+      {
+        "command": "systemdesigntutor.runDiagnostics",
+        "title": "System Design Tutor: Run Diagnostics"
+      },
+      {
+        "command": "systemdesigntutor.viewLogs",
+        "title": "System Design Tutor: View MCP Server Logs"
+      }
+    ],
+    "configuration": {
+      "title": "System Design Tutor",
+      "properties": {
+        "systemdesigntutor.bedrockRegion": {
+          "type": "string",
+          "default": "us-east-1",
+          "description": "AWS Bedrock region for LLM access"
+        },
+        "systemdesigntutor.bedrockModel": {
+          "type": "string",
+          "default": "anthropic.claude-3-sonnet-20240229-v1:0",
+          "description": "Bedrock model ID for the tutor agent"
+        },
+        "systemdesigntutor.mcpServerPort": {
+          "type": "number",
+          "default": 0,
+          "description": "MCP server port (0 for auto-assign)"
+        },
+        "systemdesigntutor.awsProfile": {
+          "type": "string",
+          "default": "default",
+          "description": "AWS profile name from ~/.aws/credentials"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile && npm run setup-python",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test",
+    "setup-python": "node scripts/setup-python.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.105.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
+    "eslint": "^9.36.0",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
